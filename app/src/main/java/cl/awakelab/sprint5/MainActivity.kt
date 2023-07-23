@@ -2,6 +2,7 @@ package cl.awakelab.sprint5
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import cl.awakelab.sprint5.databinding.ActivityMainBinding
 
@@ -15,18 +16,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initAdapter()
+        window.statusBarColor = ContextCompat.getColor(this, cl.awakelab.sprint5.R.color.dark_pink)
 
     }
-
-    fun initAdapter() {
-        val adapter = MainAdapter()
-        adapter.setData(Producto.returnShoeList())
-        val layoutManager = GridLayoutManager(this, 2)
-        binding.mainRecyclerView.layoutManager = layoutManager
-        binding.mainRecyclerView.adapter = adapter
-    }
-
 
 
 }

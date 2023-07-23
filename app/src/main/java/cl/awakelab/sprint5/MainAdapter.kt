@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import cl.awakelab.sprint5.databinding.ItemFirstScreenBinding
 import coil.load
 
-class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     var productos = mutableListOf<Producto>()
 
     class ViewHolder(val binding: ItemFirstScreenBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Producto) {
             binding.textViewNombreProducto.text = item.nombre
-            binding.textViewPrecioProducto.text = item.precio.toString()
+            binding.textViewPrecioProducto.text = item.precio.toString() + " $"
             binding.imageViewProducto.load(item.urlImagen)
         }
     }
