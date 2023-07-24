@@ -1,6 +1,7 @@
 package cl.awakelab.sprint5
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cl.awakelab.sprint5.databinding.ItemFirstScreenBinding
@@ -30,6 +31,7 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: MainAdapter.ViewHolder, position: Int) {
         var item = productos[position]
         holder.bind(item)
+
     }
 
     fun setData(returnShoeList: MutableList<Producto>) {

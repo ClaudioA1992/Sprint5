@@ -1,6 +1,30 @@
 package cl.awakelab.sprint5
 
-data class Producto(var nombre: String, var urlImagen: String, var precio: Double) {
+class Producto {
+
+    val nombre: String
+    val urlImagen: String
+    val precio: Double
+    var talla: Int = 0
+    var color: String = ""
+
+    constructor(nombre: String, urlImagen: String, precio: Double) {
+
+        this.nombre = nombre
+        this.urlImagen = urlImagen
+        this.precio = precio
+
+    }
+
+    constructor(nombre: String, urlImagen: String, precio: Double, talla: Int, color: String) {
+
+        this.nombre = nombre
+        this.urlImagen = urlImagen
+        this.precio = precio
+        this.talla = talla
+        this.color = color
+
+    }
 
     companion object {
         fun returnShoeList(): MutableList<Producto> {
