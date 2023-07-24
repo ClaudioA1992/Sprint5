@@ -3,7 +3,7 @@ package cl.awakelab.sprint5
 class Producto {
 
     val nombre: String
-    val urlImagen: String
+    var urlImagen: String
     val precio: Double
     var talla: Int = 0
     var color: String = ""
