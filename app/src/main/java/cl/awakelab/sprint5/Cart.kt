@@ -61,6 +61,7 @@ class Cart {
 
 
     fun salvarEstadoDeLista(key: String?, value: String?, contexto: Context) {
+        mSharedPreferences = contexto.getSharedPreferences("cookie", Context.MODE_PRIVATE)
         editor = mSharedPreferences.edit()
         editor.putString(key, value)
         editor.commit()
