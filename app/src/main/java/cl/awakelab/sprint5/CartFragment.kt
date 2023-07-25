@@ -1,10 +1,22 @@
 package cl.awakelab.sprint5
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import cl.awakelab.sprint5.databinding.FragmentCartBinding
+import cl.awakelab.sprint5.databinding.FragmentFirstBinding
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Type
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,6 +29,9 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class CartFragment : Fragment() {
+
+    lateinit var binding: FragmentCartBinding
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -33,8 +48,20 @@ class CartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        binding = FragmentCartBinding.inflate(LayoutInflater.from(activity))
+        initAdapter()
+        binding.imageViewGoBackCart.setOnClickListener { v ->
+            val fm: FragmentManager = requireActivity().supportFragmentManager
+            fm.popBackStack()
+        }
+        binding.imageViewHome.setOnClickListener {
+            Navigation.findNavController(binding.getRoot()).navigate(
+                R.id.action_cartFragment_to_firstFragment
+            )
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+        return binding.root
     }
 
     companion object {
@@ -56,6 +83,14 @@ class CartFragment : Fragment() {
                 }
             }
 
+    }
+
+    fun initAdapter() {
+        val adapter = CartAdapter(requireContext())
+        adapter.setData()
+        val layoutManager = LinearLayoutManager(this.context)
+        binding.recyclerViewCart.setLayoutManager(layoutManager);
+        binding.recyclerViewCart.adapter = adapter
     }
 
 }

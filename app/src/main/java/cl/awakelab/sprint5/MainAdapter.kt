@@ -33,19 +33,24 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MainAdapter.ViewHolder, position: Int) {
+
         var item = productos[position]
-        holder.bind(item)
+
         val binding: ItemFirstScreenBinding = ItemFirstScreenBinding.bind(holder.itemView)
         var bundle: Bundle = Bundle()
         val gson: Gson = GsonBuilder().disableHtmlEscaping().create()
         val productJsonString: String = gson.toJson(item)
+
         bundle.putString("product", productJsonString)
+
         holder.itemView.setOnClickListener { v: View? ->
             findNavController(binding.getRoot()).navigate(
                 R.id.action_firstFragment_to_secondFragment,
                 bundle
             )
         }
+
+        holder.bind(item)
 
     }
 

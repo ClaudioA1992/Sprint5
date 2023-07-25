@@ -77,17 +77,9 @@ class SecondFragment : Fragment(), ISecondFragmentViewPresenter {
             var cartList = mSharedPreferences.getString("cookie", "")
 
             if (cartList.isNullOrBlank()) {
-                var cartListCreation= mutableListOf<Producto>()
-                cartListCreation.add(producto)
-                var json: String = gson.toJson(cartListCreation)
-                set("cookie", json);
+                almacenarPrimeraVez(producto, gson)
             } else {
-                var listaProductos = mutableListOf<Producto>()
-                val type: Type = object : TypeToken<List<Producto?>?>() {}.type
-                listaProductos = gson.fromJson(cartList, type)
-                listaProductos.add(producto)
-                var json: String = gson.toJson(listaProductos)
-                set("cookie", json);
+                almacenarSegundaVez(producto, gson, cartList)
             }
 
         }
@@ -130,6 +122,27 @@ class SecondFragment : Fragment(), ISecondFragmentViewPresenter {
     operator fun set(key: String?, value: String?) {
         editor.putString(key, value)
         editor.commit()
+    }
+
+    fun almacenarPrimeraVez(producto: Producto, gson: Gson) {
+        var cartListCreation= mutableListOf<Producto>()
+        cartListCreation.add(producto)
+        var json: String = gson.toJson(cartListCreation)
+        println("Json string en primera vez: ${json}")
+        set("cookie", json);
+    }
+
+    fun almacenarSegundaVez(producto: Producto, gson: Gson, jsonList: String) {
+        var listaProductos = mutableListOf<Producto>()
+        val type: Type = object : TypeToken<List<Producto?>?>() {}.type
+        println("Json list en segunda vez:  ${jsonList}")
+        listaProductos = gson.fromJson(jsonList, type)
+        for(producto in listaProductos) {
+            println(producto.nombre)
+        }
+        listaProductos.add(producto)
+        var json: String = gson.toJson(listaProductos)
+        set("cookie", json);
     }
 
 
