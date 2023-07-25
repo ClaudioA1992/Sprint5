@@ -79,6 +79,8 @@ class SecondFragment : Fragment(), ISecondFragmentViewPresenter {
 
             cartModel.agregarProductoASharedPreferences(producto, requireContext(), cartList!!)
 
+            showCartMovement("agregado", producto.nombre)
+
         }
 
         binding.floatingActionButtonCartFromSecondFragment.setOnClickListener {
@@ -113,8 +115,9 @@ class SecondFragment : Fragment(), ISecondFragmentViewPresenter {
     }
 
     override fun showCartMovement(movimiento: String, nombreProducto: String) {
-        Toast.makeText(context, "Haz +  ${movimiento} en tu carro ${nombreProducto}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Haz ${movimiento} en tu carro ${nombreProducto}", Toast.LENGTH_SHORT).show()
     }
 
 
 }
+
