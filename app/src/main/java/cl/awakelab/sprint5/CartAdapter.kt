@@ -17,6 +17,7 @@ class CartAdapter(var context: Context): RecyclerView.Adapter<CartAdapter.ViewHo
     private lateinit var mSharedPreferences: SharedPreferences
     lateinit var gson: Gson
     var listaProductos = mutableListOf<Producto>()
+    private var cartModel = Cart()
 
     class ViewHolder(val binding: ItemCartBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Producto) {
@@ -27,7 +28,7 @@ class CartAdapter(var context: Context): RecyclerView.Adapter<CartAdapter.ViewHo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartAdapter.ViewHolder {
-        Log.d("MyAdapter", "OnCreate")
+        Log.d("CartAdapter", "OnCreateViewHolder")
         val binding = ItemCartBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CartAdapter.ViewHolder(binding)
     }
@@ -38,6 +39,8 @@ class CartAdapter(var context: Context): RecyclerView.Adapter<CartAdapter.ViewHo
         holder.bind(item)
         binding.imageViewTrash.setOnClickListener {
             listaProductos.remove(item)
+            cartModel.eliminarProductoDeSharedPreferences(item, context)
+            print(mSharedPreferences.getString("cookie", ""))
             notifyDataSetChanged()
         }
     }
@@ -53,7 +56,9 @@ class CartAdapter(var context: Context): RecyclerView.Adapter<CartAdapter.ViewHo
         var stringJson = mSharedPreferences.getString("cookie", "")
         val tipo = object : TypeToken<List<Producto?>?>() {}.type
 
-        listaProductos = gson.fromJson(stringJson, tipo)
+        if(!stringJson.isNullOrBlank()) {
+            listaProductos = gson.fromJson(stringJson, tipo)
+        }
 
     }
 

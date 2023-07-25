@@ -31,6 +31,9 @@ private const val ARG_PARAM2 = "param2"
 class CartFragment : Fragment() {
 
     lateinit var binding: FragmentCartBinding
+    private lateinit var mSharedPreferences: SharedPreferences
+    private var valorTotal = 0.0
+    private var cartModel = Cart()
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -51,9 +54,14 @@ class CartFragment : Fragment() {
 
         binding = FragmentCartBinding.inflate(LayoutInflater.from(activity))
         initAdapter()
+        binding.textViewCartTotal.text = "Total: " + valorTotal.toString() + " $"
         binding.imageViewGoBackCart.setOnClickListener { v ->
             val fm: FragmentManager = requireActivity().supportFragmentManager
             fm.popBackStack()
+        }
+        binding.imageViewEmptyCart.setOnClickListener {
+            mSharedPreferences.edit().clear().apply()
+            print(mSharedPreferences.getString("cookie", ""))
         }
         binding.imageViewHome.setOnClickListener {
             Navigation.findNavController(binding.getRoot()).navigate(
@@ -86,11 +94,13 @@ class CartFragment : Fragment() {
     }
 
     fun initAdapter() {
+        mSharedPreferences = requireContext().getSharedPreferences("cookie", Context.MODE_PRIVATE)
         val adapter = CartAdapter(requireContext())
         adapter.setData()
         val layoutManager = LinearLayoutManager(this.context)
         binding.recyclerViewCart.setLayoutManager(layoutManager);
         binding.recyclerViewCart.adapter = adapter
+        valorTotal = cartModel.calculoPrecioTotal(adapter.listaProductos)
     }
 
 }

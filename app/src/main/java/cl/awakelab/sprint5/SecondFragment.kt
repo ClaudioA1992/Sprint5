@@ -33,6 +33,7 @@ class SecondFragment : Fragment(), ISecondFragmentViewPresenter {
     lateinit var binding: FragmentSecondBinding
     private lateinit var mSharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
+    private var cartModel = Cart()
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -76,11 +77,7 @@ class SecondFragment : Fragment(), ISecondFragmentViewPresenter {
             editor = mSharedPreferences.edit()
             var cartList = mSharedPreferences.getString("cookie", "")
 
-            if (cartList.isNullOrBlank()) {
-                almacenarPrimeraVez(producto, gson)
-            } else {
-                almacenarSegundaVez(producto, gson, cartList)
-            }
+            cartModel.agregarProductoASharedPreferences(producto, requireContext(), cartList!!)
 
         }
 
@@ -117,32 +114,6 @@ class SecondFragment : Fragment(), ISecondFragmentViewPresenter {
 
     override fun showCartMovement(movimiento: String, nombreProducto: String) {
         Toast.makeText(context, "Haz +  ${movimiento} en tu carro ${nombreProducto}", Toast.LENGTH_SHORT).show()
-    }
-
-    operator fun set(key: String?, value: String?) {
-        editor.putString(key, value)
-        editor.commit()
-    }
-
-    fun almacenarPrimeraVez(producto: Producto, gson: Gson) {
-        var cartListCreation= mutableListOf<Producto>()
-        cartListCreation.add(producto)
-        var json: String = gson.toJson(cartListCreation)
-        println("Json string en primera vez: ${json}")
-        set("cookie", json);
-    }
-
-    fun almacenarSegundaVez(producto: Producto, gson: Gson, jsonList: String) {
-        var listaProductos = mutableListOf<Producto>()
-        val type: Type = object : TypeToken<List<Producto?>?>() {}.type
-        println("Json list en segunda vez:  ${jsonList}")
-        listaProductos = gson.fromJson(jsonList, type)
-        for(producto in listaProductos) {
-            println(producto.nombre)
-        }
-        listaProductos.add(producto)
-        var json: String = gson.toJson(listaProductos)
-        set("cookie", json);
     }
 
 

@@ -28,6 +28,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageViewEmptyCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:src="@drawable/baseline_delete_outline_24"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewHome"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewHome"
+        app:layout_constraintTop_toTopOf="@+id/imageViewHome" />
+
+    <ImageView
+        android:id="@+id/imageViewHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:src="@drawable/baseline_home_24"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarTopCart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCart"
+        android:layout_width="match_parent"
+        android:layout_height="601dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="65dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarBottomCart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarTopCart" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarBottomCart"
         android:layout_width="match_parent"
@@ -49,18 +81,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewCart"
-        android:layout_width="match_parent"
-        android:layout_height="601dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="65dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbarBottomCart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarTopCart" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -71,15 +91,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/toolbarBottomCart"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewCart" />
-
-    <ImageView
-        android:id="@+id/imageViewHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:src="@drawable/baseline_home_24"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbarTopCart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

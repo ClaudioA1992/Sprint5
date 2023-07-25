@@ -3,6 +3,7 @@ package cl.awakelab.sprint5
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
@@ -22,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         mSharedPreferences = getSharedPreferences("cookie", Context.MODE_PRIVATE)
 
         window.statusBarColor = ContextCompat.getColor(this, cl.awakelab.sprint5.R.color.dark_pink)
+
+        Log.d("MainActivity", "Creación de app")
 
     }
 
