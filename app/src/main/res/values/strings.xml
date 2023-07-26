@@ -2,4 +2,11 @@
     <string name="app_name">Sprint 5</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Main_title">Our products</string>
+    <string name="Main_menu_1">Dress</string>
+    <string name="Main_menu_2">Shoes</string>
+    <string name="Main_menu_3">Jewelry</string>
+    <string name="Detail_size">Size:</string>
+    <string name="Detail_available_color">Available Color:</string>
+    <string name="Button_pago_text">Elegir medio de pago</string>
 </resources>

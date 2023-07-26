@@ -30,17 +30,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/textViewProductNameCart"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textViewProductNameCart"
-                app:layout_constraintTop_toBottomOf="@+id/textViewProductNameCart" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewProductNameCart"
+                app:layout_constraintVertical_bias="0.135" />
 
             <TextView
                 android:id="@+id/textViewProductNameCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="36dp"
                 android:text="TextView"
                 app:layout_constraintStart_toEndOf="@+id/imageViewProductImageCart"
                 app:layout_constraintTop_toTopOf="parent" />
